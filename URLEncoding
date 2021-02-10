@@ -1,0 +1,40 @@
+
+
+import java.util.Scanner;
+
+
+public class URLEncoding {
+    public static void main(String[] args) {
+        
+        
+        Scanner scanner= new Scanner(System.in);
+        System.out.println("Enter a line of text to be URL encoded");
+        String url=scanner.nextLine();
+        String urlEncoded="";
+        System.out.println("The string read is:  "+url);
+        System.out.println("Length in chars is:  "+url.length());        
+        
+        
+        for (int i = 0; i < url.length(); i++) {
+            
+            if (url.charAt(i)==' ') {
+                
+                urlEncoded+='+';
+            }
+            else if((url.charAt(i)>='a' && url.charAt(i)<='z') || (url.charAt(i)>='A' && url.charAt(i)<='Z') || (url.charAt(i)>='0' && url.charAt(i)<='9')|| url.charAt(i)=='-'|| url.charAt(i)=='_' || url.charAt(i)=='.' || url.charAt(i)=='*' ){
+                
+                
+                urlEncoded+=url.charAt(i);
+            }
+            else{
+                String hexValue = Integer.toHexString(url.charAt(i));
+                    String enc  = '%' + hexValue;
+                    urlEncoded+=enc;
+                   
+            }
+        }
+        System.out.println("The encoded string:  "+urlEncoded);
+        System.out.println("Length in chars is:  "+urlEncoded.length());   
+        
+    }
+}
